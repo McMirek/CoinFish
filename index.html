@@ -132,25 +132,27 @@
               <th scope="col">1h Change</th>
               <th scope="col">1d Change</th>
               <th scope="col">1w Change</th>
-              <th scope="col">1d Vol</th>
+              <th scope="col">1d Volume</th>
+              <th scope="col">Market cap</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td>
-<img class="coinIcon" alt="bitcoin (BTC)" data-src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"
-data-srcset="https://assets.coingecko.com/coins/images/1/thumb_2x/bitcoin.png?1547033579 2x"
-src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"
-srcset="https://assets.coingecko.com/coins/images/1/thumb_2x/bitcoin.png?1547033579 2x">
-                Bitcoin</td>
-              <td style="color:blue" id="price"><b> </<b></td>
-              <td>10 %</td>
-              <td id="btcChangeToday"> %</td>
-              <td>1000 %</td>
+              <td id="bitcoinIcon">
+<img src="" alt="bitcoin(BTC)" ><span id="coinName">
+                Bitcoyn</td>
+                <td id="price" style="color:blue" ><b> </<b></td>
+
+
+              <td><p id="btcChange1h">0 %</p></td>
+              <td><p id="btcChangeToday"> 0</p></td>
+              <td id="btcOneWeek">0</td>
+              <td id="btcVolume">0</td>
+              <td id="btcCurrentMarketCap"><p id=marketCap> 0</p></td>
             </tr>
             <tr>
-              <th scope="row">2</th>
+        <th scope="row">2</th>
 
               <td><img class="coinIcon" alt="ethereum (ETH)" data-src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880"
               data-srcset="https://assets.coingecko.com/coins/images/279/thumb_2x/ethereum.png?1595348880 2x" src=
@@ -226,6 +228,7 @@ let GLOBAL_ENDPOINT ="/coins/markets?vs_currency=usd&ids=bitcoin&order=market_ca
 let BITCOIN_MARKET_CAP_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 let BITCOIN_LASTWEEK_ENDPOINT = "/coins/bitcoin/market_chart?vs_currency=usd&days=7";
 let BITCOIN_CHANGE_TODAY_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h";
+let BITCOIN_INFO_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
 
 
 let bitcoinPriceUrl = BASE_URL + BITCOIN_PRICE_ENDPOINT;
@@ -233,40 +236,63 @@ let allCoinsUrl = BASE_URL + COINS_ENDPOINT;
 let globalUrl = BASE_URL + GLOBAL_ENDPOINT;
 let btcLastWeekMarketCapUrl = BASE_URL + BITCOIN_LASTWEEK_ENDPOINT;
 let currentMarketCapUrl = BASE_URL + BITCOIN_MARKET_CAP_ENDPOINT;
-let btcChangeTodayUrl = BASE_URL + BITCOIN_CHANGE_TODAY_ENDPOINT
+let btcChangeTodayUrl = BASE_URL + BITCOIN_CHANGE_TODAY_ENDPOINT;
+let bitcoinInfo = BASE_URL + BITCOIN_INFO_ENDPOINT;
 
-var bitcoinValue;
-var btcChangeOneH;
-var marketCap;
-var lastMarketCap;
-var btcChangeToday;
+async function shoWBtcInfo() {
+  let response = await fetch(bitcoinInfo);
+  let data = await response.json();
+  let icon_url = data[0].image;
+  let coinName = data[0].name;
+  let lastPrice = data[0].current_price;
+  let priceChangeToday = data[0].price_change_percentage_24h;
+console.log(data[0].price_change_percentage_24h);
+  let lastMarketCap = data[0].market_cap;
+  let coinVolume = data[0].total_volume;
 
-DoWriteValueAfterCheck();
 
-async function DoWriteValueAfterCheck() {
 
-  await getBitcoinPrice();
-  await getMarketCap();// getMarketCap();
-  await getLastMarketCap();//getLastMarketCap();
-  await getBitcoinChange24h();
-  console.log("Pagevalues: " + bitcoinValue + " " +marketCap  +" "+ lastMarketCap);
+ $("#bitcoinIcon").html('<img src="' + icon_url + '" alt="coinlogo"; style="width:30px";> '+ coinName);//icon+name
+ $("#price").html(lastPrice);
+ $("#price1").html(lastPrice);
+ $("#btcChange1h").html(btcChangeToday /24 + " % *")
+ $("#btcChangeToday").html("<p>" + priceChangeToday + " %</p>");
+$("#btcVolume").html(coinVolume);
+  $("#marketCap").html(lastMarketCap);
 
-  var el = document.getElementById('price');
-  if (lastMarketCap<marketCap)
-  {
-      el.style.color = "green";
-  }
-  else
-  {
-    el.style.color = "red";
-  }
 
- $("#price").html(bitcoinValue);
- $("#price1").html(bitcoinValue);
-  $("#markCap").html(marketCap);
- $("#lastWeekMarkCap").html(lastMarketCap);
- $("#btcChangeToday").html(btcChangeToday)
+
+
+
+ $("#price").html(lastPrice
+ + "!! <br>La Market cap è: "
+ + lastMarketCap
+ +" !</h2>") ;
+
+
+
 }
+
+
+
+shoWBtcInfo()
+
+/*
+async function shoWBtcInfo() {
+   // read our JSON
+   let response = await fetch(bitcoinInfo);
+   let data = await response.json();
+   let icon_url = data[0].image
+   let lastPrice = data[0].current_price;
+   let btcMarketcap = data[0].market_cap;
+   let priceChangeToday = data[0].price_change_percentage_24h;
+   let coinName =data[0].name;
+
+
+
+
+
+
 
 
 async function getBitcoinPrice() {
@@ -326,7 +352,7 @@ async function getMarketCap() {
 
 
 
-
+*/
 
 
 </script>
