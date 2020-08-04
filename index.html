@@ -129,53 +129,65 @@
               <th scope="col">#</th>
               <th scope="col">Coin</th>
               <th scope="col">Price</th>
+              <th scope="col">Actual Supply</th>
               <th scope="col">1h Change</th>
               <th scope="col">1d Change</th>
               <th scope="col">1w Change</th>
-              <th scope="col">1d Vol</th>
+              <th scope="col">1d Volume</th>
+              <th scope="col">Market cap</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td>
-<img class="coinIcon" alt="bitcoin (BTC)" data-src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"
-data-srcset="https://assets.coingecko.com/coins/images/1/thumb_2x/bitcoin.png?1547033579 2x"
-src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"
-srcset="https://assets.coingecko.com/coins/images/1/thumb_2x/bitcoin.png?1547033579 2x">
-                Bitcoin</td>
-              <td style="color:blue" id="price"><b> </<b></td>
-              <td>10 %</td>
-              <td id="btcChangeToday"> %</td>
-              <td>1000 %</td>
+              <td id="bitcoinIcon">
+               <img src="" alt="bitcoin(BTC)" ><span id="coinName"></td>
+              <td id="btcPrice" style="color:blue" ><b> </<b></td>
+              <td id="btcSupply"></td>
+              <td><p id="btcChange1h">0 %</p></td>
+              <td><p id="btcChangeToday"> 0</p></td>
+              <td id="btcOneWeek">0</td>
+              <td id="btcVolume">0</td>
+              <td id="btcCurrentMarketCap"><p id=btcMarketCap> 0</p></td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
 
-              <td><img class="coinIcon" alt="ethereum (ETH)" data-src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880"
-              data-srcset="https://assets.coingecko.com/coins/images/279/thumb_2x/ethereum.png?1595348880 2x" src=
-              "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" srcset=
-              "https://assets.coingecko.com/coins/images/279/thumb_2x/ethereum.png?1595348880 2x">Ethereum</td>
-              <td>320</td>
-              <td>2 %</td>
-                <td>16 %</td>
-                  <td>32 %</td>
-                    <td>1000012</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>
-<img class="" alt="xrp (XRP)" data-src="https://assets.coingecko.com/coins/images/44/thumb/xrp.png?1564480400"
-data-srcset="https://assets.coingecko.com/coins/images/44/thumb_2x/xrp.png?1564480400 2x"
-src="https://assets.coingecko.com/coins/images/44/thumb/xrp.png?1564480400"
-srcset="https://assets.coingecko.com/coins/images/44/thumb_2x/xrp.png?1564480400 2x">
-                Ripple</td>
-              <td>0,25</td>
-                <td>-3 %</td>
-                  <td>-32 %</td>
-                    <td>-39 %</td>
-                      <td>9999999999</td>
-            </tr>
+
+              <tr>
+                <th scope="row">2</th>
+                <td id="ethIcon">
+                 <img src="" alt="eth(ETH)" ><span id="ethCoinName"></td>
+                <td id="ethPrice" style="color:blue" ><b> </<b></td>
+                <td id="ethSupply"></td>
+                <td><p id="ethChange1h">0 %</p></td>
+                <td><p id="ethChangeToday"> 0</p></td>
+                <td id="ethOneWeek">0</td>
+                <td id="ethVolume">0</td>
+                <td id="ethCurrentMarketCap"><p id=ethMarketCap> 0</p></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td id="xrpCoinIcon">
+                 <img src="" alt="xrp(xrp)" ><span id="xrpCoinName"></td>
+                <td id="xrpPrice" style="color:blue" ><b> </<b></td>
+                <td id="xrpSupply"></td>
+                <td><p id="xrpChange1h">0 %</p></td>
+                <td><p id="xrpChangeToday"> 0</p></td>
+                <td id="xrpOneWeek">0</td>
+                <td id="xrpVolume">0</td>
+                <td id="xrpCurrentMarketCap"><p id=xrpMarketCap> 0</p></td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td id="usdtCoinIcon">
+                 <img src="" alt="usdt(usdt)" ><span id="usdtCoinName"></td>
+                <td id="usdtPrice" style="color:blue" ><b> </<b></td>
+                <td id="usdtSupply"></td>
+                <td><p id="usdtChange1h">0 %</p></td>
+                <td><p id="usdtChangeToday"> 0</p></td>
+                <td id="usdtOneWeek">0</td>
+                <td id="usdtVolume">0</td>
+                <td id="usdtCurrentMarketCap"><p id=usdtMarketCap> 0</p></td>
+              </tr>
           </tbody>
         </table>
 
@@ -218,114 +230,110 @@ srcset="https://assets.coingecko.com/coins/images/44/thumb_2x/xrp.png?1564480400
 
 <script>
 
-
 let BASE_URL = "https://api.coingecko.com/api/v3";
 let BITCOIN_PRICE_ENDPOINT ="/simple/price?ids=bitcoin&vs_currencies=usd";
-let COINS_ENDPOINT = "/coins/list";
-let GLOBAL_ENDPOINT ="/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false";
-let BITCOIN_MARKET_CAP_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false";
-let BITCOIN_LASTWEEK_ENDPOINT = "/coins/bitcoin/market_chart?vs_currency=usd&days=7";
+
 let BITCOIN_CHANGE_TODAY_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h";
+let COINS_INFO_ENDPOINT = "/coins/markets?vs_currency=usd&ids=bitcoin%2C%20ethereum%2C%20ripple%2C%20tether&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
 
 
-let bitcoinPriceUrl = BASE_URL + BITCOIN_PRICE_ENDPOINT;
-let allCoinsUrl = BASE_URL + COINS_ENDPOINT;
-let globalUrl = BASE_URL + GLOBAL_ENDPOINT;
-let btcLastWeekMarketCapUrl = BASE_URL + BITCOIN_LASTWEEK_ENDPOINT;
-let currentMarketCapUrl = BASE_URL + BITCOIN_MARKET_CAP_ENDPOINT;
-let btcChangeTodayUrl = BASE_URL + BITCOIN_CHANGE_TODAY_ENDPOINT
+let btcChangeTodayUrl = BASE_URL + BITCOIN_CHANGE_TODAY_ENDPOINT;
+let coinsInfo = BASE_URL + COINS_INFO_ENDPOINT;
 
-var bitcoinValue;
-var btcChangeOneH;
-var marketCap;
-var lastMarketCap;
-var btcChangeToday;
+async function showBtcInfo() {
+  let response = await fetch(coinsInfo);
+  let data = await response.json();
+  let icon_url = data[0].image; // BITCOIN
+  let coinName = data[0].name;
+  let lastPrice = data[0].current_price;
+  let priceChangeToday = Math.round((data[0].price_change_percentage_24h_in_currency + 0.00001) * 100) / 100
+  let lastMarketCap = data[0].market_cap;
+  let coinVolume = data[0].total_volume;
+  let yesterdayMarketCapPercentage = data[0].market_cap_change_percentage_24h;
+  let yesterdayMarketCapPercentageCent = Math.round((yesterdayMarketCapPercentage + 0.00001) * 100) / 100;
+  let circulSupply = data[0].circulating_supply;
+console.log("Bitcoin loaded, actual price: " + lastPrice);
 
-DoWriteValueAfterCheck();
 
-async function DoWriteValueAfterCheck() {
 
-  await getBitcoinPrice();
-  await getMarketCap();// getMarketCap();
-  await getLastMarketCap();//getLastMarketCap();
-  await getBitcoinChange24h();
-  console.log("Pagevalues: " + bitcoinValue + " " +marketCap  +" "+ lastMarketCap);
+ $("#bitcoinIcon").html('<img src="' + icon_url + '" alt="coinlogo"; style="width:30px";> '+ coinName);//icon+name
+ $("#btcPrice").html(lastPrice);
+ $("#btcPrice1").html(lastPrice);
+ $("#btcChange1h").html( 2 + " % ")
+ $("#btcChangeToday").html("<p>" + priceChangeToday + " %</p>");
+ $("#btcVolume").html(coinVolume);
+ $("#btcMarketCap").html(lastMarketCap + "<em> ("+ yesterdayMarketCapPercentageCent + " %)</em>");
+ $("#btcSupply").html(circulSupply);
 
-  var el = document.getElementById('price');
-  if (lastMarketCap<marketCap)
-  {
-      el.style.color = "green";
-  }
-  else
-  {
-    el.style.color = "red";
-  }
+ let icon_url1 = data[1].image; // Ethereum
+ let coinName1 = data[1].name;
+ let lastPrice1 = data[1].current_price;
+ let priceChangeToday1 = Math.round((data[1].price_change_percentage_24h_in_currency + 0.00001) * 100) / 100
+ let lastMarketCap1 = data[1].market_cap;
+ let coinVolume1 = data[1].total_volume;
+ let yesterdayMarketCapPercentage1 = data[1].market_cap_change_percentage_24h;
+ let yesterdayMarketCapPercentageCent1 = Math.round((yesterdayMarketCapPercentage1 + 0.00001) * 100) / 100;
+ let circulSupply1 = data[1].circulating_supply;
+ console.log("Ethereum loaded, actual price: " + lastPrice1);
 
- $("#price").html(bitcoinValue);
- $("#price1").html(bitcoinValue);
-  $("#markCap").html(marketCap);
- $("#lastWeekMarkCap").html(lastMarketCap);
- $("#btcChangeToday").html(btcChangeToday)
+
+ $("#ethIcon").html('<img src="' + icon_url1 + '" alt="coinlogo"; style="width:30px";> '+ coinName1);//icon+name
+ $("#ethPrice").html(lastPrice1);
+ $("#ethPrice1").html(lastPrice1);
+ $("#ethChange1h").html( 2 + " % ")
+ $("#ethChangeToday").html("<p>" + priceChangeToday1 + " %</p>");
+ $("#ethVolume").html(coinVolume1);
+ $("#ethMarketCap").html(lastMarketCap1 + "<em> ("+ yesterdayMarketCapPercentageCent1 + " %)</em>");
+ $("#ethSupply").html(circulSupply1);
+
+ let icon_url2 = data[2].image; // Ripple
+ let coinName2 = data[2].name;
+ let lastPrice2 = data[2].current_price;
+ let priceChangeToday2 = Math.round((data[2].price_change_percentage_24h_in_currency + 0.00001) * 100) / 100
+ let lastMarketCap2 = data[2].market_cap;
+ let coinVolume2 = data[2].total_volume;
+ let yesterdayMarketCapPercentage2 = data[2].market_cap_change_percentage_24h;
+ let yesterdayMarketCapPercentageCent2 = Math.round((yesterdayMarketCapPercentage2 + 0.00001) * 100) / 100;
+ let circulSupply2 = data[2].circulating_supply;
+ console.log("Bitcoin loaded, actual price: " + lastPrice);
+
+ $("#xrpCoinIcon").html('<img src="' + icon_url2 + '" alt="coinlogo"; style="width:30px";> '+ coinName2);//icon+name
+ $("#xrpPrice").html(lastPrice2);
+ $("#xrpPrice1").html(lastPrice2);
+ $("#xrpChange1h").html( 2 + " % ")
+ $("#xrpChangeToday").html("<p>" + priceChangeToday2 + " %</p>");
+ $("#xrpVolume").html(coinVolume2);
+ $("#xrpMarketCap").html(lastMarketCap2 + "<em> ("+ yesterdayMarketCapPercentageCent2 + " %)</em>");
+ $("#xrpSupply").html(circulSupply2);
+
+ let icon_url3 = data[3].image; // USDT
+ let coinName3 = data[3].name;
+ let lastPrice3 = data[3].current_price;
+ let priceChangeToday3 = Math.round((data[3].price_change_percentage_24h_in_currency + 0.00001) * 100) / 100
+ let lastMarketCap3 = data[3].market_cap;
+ let coinVolume3 = data[3].total_volume;
+ let yesterdayMarketCapPercentage3 = data[3].market_cap_change_percentage_24h;
+ let yesterdayMarketCapPercentageCent3 = Math.round((yesterdayMarketCapPercentage3 + 0.00001) * 100) / 100;
+ let circulSupply3 = data[3].circulating_supply;
+ console.log("Bitcoin loaded, actual price: " + lastPrice);
+
+ $("#usdtCoinIcon").html('<img src="' + icon_url3 + '" alt="coinlogo"; style="width:30px";> '+ coinName3);//icon+name
+ $("#usdtPrice").html(lastPrice3);
+ $("#usdtPrice1").html(lastPrice3);
+ $("#usdtChange1h").html( 2 + " % ")
+ $("#usdtChangeToday").html("<p>" + priceChangeToday3 + " %</p>");
+ $("#usdtVolume").html(coinVolume3);
+ $("#usdtMarketCap").html(lastMarketCap3 + "<em> ("+ yesterdayMarketCapPercentageCent3 + " %)</em>");
+ $("#usdtSupply").html(circulSupply3);
+
 }
 
 
-async function getBitcoinPrice() {
-
-  await fetch (bitcoinPriceUrl)
-    .then(res => res.json())
-    .then(data => {
-
-      var convertedNumber = Math.round(parseInt(data.bitcoin.usd));
-      bitcoinValue = convertedNumber;
-      console.log(convertedNumber)
-    //  return convertedNumber ;
-    })
-}
-
-async function getMarketCap() {
-
-  await fetch (currentMarketCapUrl)
-    .then(res => res.json())
-    .then(data => {
-
-      var convertedNumber = Math.round(parseInt(data[0].market_cap));
-      marketCap = convertedNumber;
-      console.log(data[0].market_cap)
-      return convertedNumber ;
-    })
- }
- async function getBitcoinChange24h() {
-
-   await fetch (btcChangeTodayUrl)
-     .then(res => res.json())
-     .then(data => {
-
-       var convertedNumber = Math.round((data[0].price_change_percentage_24h_in_currency) * 100) / 100;
-       btcChangeToday = convertedNumber;
-       console.log(data[0].price_change_percentage_24h_in_currency)
-       return convertedNumber ;
-     })
-  }
-
- async function getLastMarketCap(){
-
-  await fetch (btcLastWeekMarketCapUrl)
-    .then(res => res.json())
-    .then(data => {
-
-      var convertedNumber = Math.round(parseInt(data.market_caps[167][1]));
-      console.log(data.market_caps[167][1]);
-      lastMarketCap = convertedNumber;
-      console.log(lastMarketCap)
-      return lastMarketCap ;
-    })
-}
-
-//API
 
 
 
 
+showBtcInfo()
 
 
 
