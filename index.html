@@ -14,7 +14,7 @@
     <div class="row" id="firstRaw">
      <div class="col-sm-12">
        <nav class="navbar fixed-top bg-dark navbar-dark navbar-expand-sm justify-content-center"> <!--BLACK NAVBAR-->
-       <span style="text-allign=center"><a class="navbar-brand" href="#">Ti codifico il mondo, madafacca!</a></nav>
+       <span style="text-allign=center"><a class="navbar-brand" href="#">Ti codifico il mondo, baby!</a></nav>
     </div></div>
   </div>
 
@@ -114,13 +114,38 @@
     </div>
   </nav>
 </div>
-  </div></div>
 
-<hr>
+  <div class="col-sm-12" style="margin-top:115px;">
+    <h1 style="text-align:center;"> Top 100 cryptocoins! Open fishing!</h1>
+  </div>
+
+  <div class="col-sm-12" style="margin-top:0px;">
+      <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">USD</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Fi</a>
+          <a class="dropdown-item" href="#">Favourites</a>
+          <a class="dropdown-item" href="#">Explore</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Filter</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+  </div>
+
+</div></div>
 
 <div class="container-fluid" id="anotherContainer1">
-
-
     <div class="row">
       <div class="col-sm-12">
         <table class="table" class="table-responsive{-sm|-md|-lg|-xl} table-hover">
@@ -191,7 +216,7 @@
           </tbody>
         </table>
 
-
+<!-- NON UTILE
 <div class="container-fluid" id="anotherContainer2">
 
 
@@ -221,7 +246,7 @@
       <h2 id="Text3"> Last Week's Market Cap </h2>
       <h2 id="lastWeekMarkCap"> </h2>
       <br>
-
+-->
   </div>
 
 </div></div>
@@ -295,7 +320,7 @@ console.log("Bitcoin loaded, actual price: " + lastPrice);
  let yesterdayMarketCapPercentage2 = data[2].market_cap_change_percentage_24h;
  let yesterdayMarketCapPercentageCent2 = Math.round((yesterdayMarketCapPercentage2 + 0.00001) * 100) / 100;
  let circulSupply2 = data[2].circulating_supply;
- console.log("Bitcoin loaded, actual price: " + lastPrice);
+ console.log("Ripple loaded, actual price: " + lastPrice2);
 
  $("#xrpCoinIcon").html('<img src="' + icon_url2 + '" alt="coinlogo"; style="width:30px";> '+ coinName2);//icon+name
  $("#xrpPrice").html(lastPrice2);
@@ -315,7 +340,7 @@ console.log("Bitcoin loaded, actual price: " + lastPrice);
  let yesterdayMarketCapPercentage3 = data[3].market_cap_change_percentage_24h;
  let yesterdayMarketCapPercentageCent3 = Math.round((yesterdayMarketCapPercentage3 + 0.00001) * 100) / 100;
  let circulSupply3 = data[3].circulating_supply;
- console.log("Bitcoin loaded, actual price: " + lastPrice);
+ console.log("Tether loaded, actual price: " + lastPrice3);
 
  $("#usdtCoinIcon").html('<img src="' + icon_url3 + '" alt="coinlogo"; style="width:30px";> '+ coinName3);//icon+name
  $("#usdtPrice").html(lastPrice3);
